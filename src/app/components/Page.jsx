@@ -11,13 +11,14 @@ function Page({ data }) {
   const [sort, setSort] = useState(null);
   const [filter, setFilter] = useState(false);
   const [book, setBook] = useState();
+
   useEffect(() => {
     sort == true
       ? setItems((items) => [...items].sort((a, b) => a.item_name.localeCompare(b.item_name)))
       : sort == false
         ? setItems((items) => [...items].sort((a, b) => b.item_name.localeCompare(a.item_name)))
-        : setItems(items);
-  }, [sort]);
+        : setItems(data);
+  }, [sort, book]);
 
   return (
     <div className="">
@@ -29,12 +30,19 @@ function Page({ data }) {
       </div>
       <div className="ml-[22%] bg-primary-bg pr-10">
         <div className="flex flex-col gap-5">
-          <div className="fixed top-[70] z-30 w-[78%] flex justify-between p-6 bg-primary-bg">
+          <div className="fixed top-[68] z-30 w-[78%] flex justify-between p-6 bg-primary-bg">
             <NavComponent setFilter={setFilter} setSort={setSort} filter={filter} />
           </div>
           <main className="mt-30">
             <div className="flex flex-col gap-3 justify-center items-center p-5">
-              {(filter ? items.filter((item) => item.saved) : items).map((item) => (
+              {(filter
+                ? items.filter((item) => item.saved)
+                : sort
+                  ? [...items].sort((a, b) => a.item_name.localeCompare(b.item_name))
+                  : sort == false
+                    ? [...items].sort((a, b) => b.item_name.localeCompare(a.item_name))
+                    : items
+              ).map((item) => (
                 <Card key={item.id} item={item} items={items} setBook={setBook} />
               ))}
             </div>
