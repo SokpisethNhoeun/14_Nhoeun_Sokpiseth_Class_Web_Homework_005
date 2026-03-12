@@ -29,8 +29,8 @@ function Page({ data }) {
       </div>
       <div className="ml-[22%] bg-primary-bg pr-10">
         <div className="flex flex-col gap-5">
-          <div className="fixed top-[7.2%] z-30 w-[78%] flex justify-between p-6 bg-primary-bg">
-            <NavComponent setFilter={setFilter} setSort={setSort} filter={filter}/>
+          <div className="fixed top-[70] z-30 w-[78%] flex justify-between p-6 bg-primary-bg">
+            <NavComponent setFilter={setFilter} setSort={setSort} filter={filter} />
           </div>
           <main className="mt-30">
             <div className="flex flex-col gap-3 justify-center items-center p-5">
